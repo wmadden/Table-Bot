@@ -29,7 +29,7 @@ module TableBot
     end
     
     def move
-      new_location = robot_location
+      new_location = Array.new(robot_location)
       
       case robot_orientation
       when :north
