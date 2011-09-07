@@ -22,10 +22,7 @@ module TableBot
     end
     
     def place( location, orientation )
-      if location[1] > @height ||
-         location[1] < 0 ||
-         location[0] > @width ||
-         location[0] < 0
+      if not valid_position?( location )
         raise Error.new("Requested location is outside world boundaries")
       end
       
