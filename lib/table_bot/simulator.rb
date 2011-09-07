@@ -14,6 +14,13 @@ module TableBot
       not @robot_location.nil?
     end
     
+    def valid_position?( position )
+      position[1] < @height &&
+      position[1] >= 0 &&
+      position[0] < @width &&
+      position[0] >= 0
+    end
+    
     def place( location, orientation )
       if location[1] > @height ||
          location[1] < 0 ||

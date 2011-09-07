@@ -27,6 +27,35 @@ describe TableBot::Simulator do
     end
   end
   
+  describe '#valid_position?' do
+    subject { simulator.valid_position?(position) }
+    
+    context 'when position is inside world' do
+      let(:position) { [3,3] }
+      it { should == true }
+    end
+    
+    context 'when position is over north boundary' do
+      let(:position) { [3,6] }
+      it { should == false }
+    end
+    
+    context 'when position is over south boundary' do
+      let(:position) { [3,-1] }
+      it { should == false }
+    end
+    
+    context 'when position is over east boundary' do
+      let(:position) { [6,3] }
+      it { should == false }
+    end
+    
+    context 'when position is over west boundary' do
+      let(:position) { [-1,3] }
+      it { should == false }
+    end
+  end
+  
   describe '#place' do
     let(:orientation) { :east }
     
