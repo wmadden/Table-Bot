@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "table_bot/application"
+
+app = TableBot::Application.new
+app.run( *ARGV )
