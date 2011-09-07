@@ -106,6 +106,19 @@ describe TableBot::Simulator do
       simulator.stub(:robot_location).and_return( location )
     end
     
+    context 'when the position is invalid' do
+      let(:orientation) { :north }
+      
+      before do
+        simulator.stub(:valid_position?).and_return(false)
+      end
+      
+      it 'should not place the robot' do
+        simulator.should_not_receive(:place)
+        subject
+      end
+    end
+    
     context 'when the robot is facing north' do
       let(:orientation) { :north }
       

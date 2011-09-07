@@ -22,29 +22,27 @@ module TableBot
     end
     
     def place( location, orientation )
-      if not valid_position?( location )
-        raise Error.new("Requested location is outside world boundaries")
-      end
+      raise Error.new("Requested location is outside world boundaries") unless valid_position?( location )
       
       @robot_location = location
       robot_orientation = orientation
     end
     
     def move
-      current_location = robot_location
+      new_location = robot_location
       
       case robot_orientation
       when :north
-        current_location[1] += 1
+        new_location[1] += 1
       when :south
-        current_location[1] -= 1
+        new_location[1] -= 1
       when :east
-        current_location[0] += 1
+        new_location[0] += 1
       when :west
-        current_location[0] -= 1
+        new_location[0] -= 1
       end
       
-      place( current_location, robot_orientation )
+      place( new_location, robot_orientation ) if valid_position?( new_location )
     end
     
     def turn( direction )
