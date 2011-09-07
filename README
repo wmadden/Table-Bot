@@ -1,0 +1,4 @@
+Simple script for the REA code test.
+
+Run the application with `rake run`, run tests with `rake test`. Find out more
+with `rake -T`.
