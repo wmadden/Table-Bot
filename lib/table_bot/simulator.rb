@@ -42,9 +42,9 @@ module TableBot
     def turn( direction )
       case direction
       when :left
-        @robot_orientation -= 90
-      when :right
         @robot_orientation += 90
+      when :right
+        @robot_orientation -= 90
       end
     end
     
