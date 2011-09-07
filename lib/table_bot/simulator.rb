@@ -22,6 +22,23 @@ module TableBot
       @robot_orientation = orientation
     end
     
+    def move
+      current_location = robot_location
+      
+      case robot_orientation
+      when :north
+        current_location[1] += 1
+      when :south
+        current_location[1] -= 1
+      when :east
+        current_location[0] += 1
+      when :west
+        current_location[0] -= 1
+      end
+      
+      place( current_location, robot_orientation )
+    end
+    
   end
   
 end
