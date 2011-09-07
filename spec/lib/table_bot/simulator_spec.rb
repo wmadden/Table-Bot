@@ -97,6 +97,62 @@ describe TableBot::Simulator do
   end
   
   describe '#turn' do
+    
+    subject { simulator }
+    
+    before do
+      simulator.place( [0,0], orientation )
+      simulator.turn( direction )
+    end
+    
+    context 'left' do
+      let(:direction) { :left }
+      
+      context 'when facing north' do
+        let(:orientation) { :north }
+        its(:robot_orientation) { should == :west }
+      end
+      
+      context 'when facing south' do
+        let(:orientation) { :south }
+        its(:robot_orientation) { should == :east }
+      end
+      
+      context 'when facing east' do
+        let(:orientation) { :east }
+        its(:robot_orientation) { should == :north }
+      end
+      
+      context 'when facing west' do
+        let(:orientation) { :west }
+        its(:robot_orientation) { should == :south }
+      end
+    end
+    
+    context 'right' do
+      let(:direction) { :right }
+      
+      context 'when facing north' do
+        let(:orientation) { :north }
+        its(:robot_orientation) { should == :east }
+      end
+      
+      context 'when facing south' do
+        let(:orientation) { :south }
+        its(:robot_orientation) { should == :west }
+      end
+      
+      context 'when facing east' do
+        let(:orientation) { :east }
+        its(:robot_orientation) { should == :south }
+      end
+      
+      context 'when facing west' do
+        let(:orientation) { :west }
+        its(:robot_orientation) { should == :north }
+      end
+    end
+    
   end
   
 end
