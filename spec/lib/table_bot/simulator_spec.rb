@@ -27,7 +27,7 @@ describe(TableBot::Simulator) do
     end
     
     context 'when location is over north boundary' do
-      let(:location) { [3,-1] }
+      let(:location) { [3,6] }
       it { should raise_error }
     end
     
@@ -37,12 +37,12 @@ describe(TableBot::Simulator) do
     end
     
     context 'when location is over east boundary' do
-      let(:location) { [3,-1] }
+      let(:location) { [6,3] }
       it { should raise_error }
     end
     
     context 'when location is over west boundary' do
-      let(:location) { [3,-1] }
+      let(:location) { [-1,3] }
       it { should raise_error }
     end
   end
