@@ -7,6 +7,7 @@ module TableBot
     
     def initialize
       @width = @height = 5
+      @robot_orientation = 0
     end
     
     def place( location, orientation )
@@ -18,7 +19,7 @@ module TableBot
       end
       
       @robot_location = location
-      @robot_orientation = orientation
+      robot_orientation = orientation
     end
     
     def move
@@ -55,7 +56,7 @@ module TableBot
     }
     
     def robot_orientation
-      @robot_orientation = ORIENTATION_MAP.key( @robot_orientation % 360 )
+      ORIENTATION_MAP.key( @robot_orientation % 360 )
     end
     
     def robot_orientation=( new_orientation )

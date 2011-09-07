@@ -19,7 +19,7 @@ describe TableBot::Simulator do
       subject { simulator }
       
       before :each do
-        simulator.place(location, orientation)
+        simulator.place( location, orientation )
       end
       
       its(:robot_location) { should == location }
