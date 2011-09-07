@@ -1,25 +1,25 @@
 require "spec_helper"
 require "table_bot/simulator"
 
-describe(TableBot::Simulator) do
+describe TableBot::Simulator do
   
   its(:width)  { should == 5 }
   its(:height) { should == 5 }
   
-  let(:instance) { TableBot::Simulator.new }
+  let(:simulator) { TableBot::Simulator.new }
   
-  describe('#place') do
+  describe '#place' do
     let(:orientation) { :east }
     
-    subject { lambda { instance.place(location, orientation) } }
+    subject { lambda { simulator.place(location, orientation) } }
     
     context 'when location is inside world' do
-      let(:location)    { [3,3] }
+      let(:location) { [3,3] }
       
-      subject { instance }
+      subject { simulator }
       
       before :each do
-        instance.place(location, orientation)
+        simulator.place(location, orientation)
       end
       
       its(:robot_location) { should == location }
@@ -45,6 +45,58 @@ describe(TableBot::Simulator) do
       let(:location) { [-1,3] }
       it { should raise_error }
     end
+  end
+  
+  describe '#move' do
+    
+    let(:location) { [3,3] }
+    
+    subject { simulator.move }
+    
+    before do
+      simulator.stub(:robot_orientation).and_return( orientation )
+      simulator.stub(:robot_location).and_return( location )
+    end
+    
+    context 'when the robot is facing north' do
+      let(:orientation) { :north }
+      
+      it 'should place the robot one space to the north' do
+        simulator.should_receive(:place).with([3,4], :north)
+        subject
+      end
+    end
+    
+    context 'when the robot is facing south' do
+      let(:orientation) { :south }
+      
+      it 'should place the robot one space to the south' do
+        simulator.should_receive(:place).with([3,2], :south)
+        subject
+      end
+    end
+    
+    context 'when the robot is facing east' do
+      let(:orientation) { :east }
+      
+      it 'should place the robot one space to the east' do
+        simulator.should_receive(:place).with([4,3], :east)
+        subject
+      end
+    end
+    
+    context 'when the robot is facing west' do
+      let(:orientation) { :west }
+      
+      it 'should place the robot one space to the west' do
+        simulator.should_receive(:place).with([2,3], :west)
+        subject
+      end
+    end
+    
+  end
+  
+  describe '#turn' do
   end
   
 end
