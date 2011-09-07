@@ -51,6 +51,10 @@ module TableBot
       end
     end
     
+    def robot_orientation=( new_orientation )
+      @robot_orientation = ORIENTATION_MAP[ new_orientation ]
+    end
+    
   end
   
 end
