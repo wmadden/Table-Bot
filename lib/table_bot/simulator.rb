@@ -3,8 +3,7 @@ module TableBot
   class Simulator
     attr_reader :width,
                 :height,
-                :robot_location,
-                :robot_orientation
+                :robot_location
     
     def initialize
       @width = @height = 5
@@ -37,6 +36,19 @@ module TableBot
       end
       
       place( current_location, robot_orientation )
+    end
+    
+    def robot_orientation
+      case @robot_orientation % 360
+      when 0
+        :east
+      when 90
+        :north
+      when 180
+        :west
+      when 270
+        :south
+      end
     end
     
   end
