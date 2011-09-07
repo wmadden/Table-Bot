@@ -25,7 +25,7 @@ module TableBot
       raise Error.new("Requested location is outside world boundaries") unless valid_position?( location )
       
       @robot_location = location
-      robot_orientation = orientation
+      self.robot_orientation = orientation
     end
     
     def move
