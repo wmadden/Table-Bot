@@ -190,4 +190,35 @@ describe TableBot::Simulator do
     
   end
   
+  describe '#robot_orientation=' do
+    
+    subject { simulator.instance_variable_get(:@robot_orientation) }
+    
+    before do
+      simulator.instance_variable_set( :@robot_orientation, 0 )
+      simulator.robot_orientation = new_orientation
+    end
+    
+    context 'east' do
+      let(:new_orientation) { :east }
+      it { should == 0 }
+    end
+    
+    context 'north' do
+      let(:new_orientation) { :north }
+      it { should == 90 }
+    end
+    
+    context 'west' do
+      let(:new_orientation) { :west }
+      it { should == 180 }
+    end
+    
+    context 'south' do
+      let(:new_orientation) { :south }
+      it { should == 270 }
+    end
+    
+  end
+  
 end
