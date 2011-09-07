@@ -7,4 +7,5 @@ task :run do
 end
 
 task :test do
+  sh("bundle exec rspec -I lib spec")
 end
