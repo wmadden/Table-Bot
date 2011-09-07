@@ -163,6 +163,11 @@ describe TableBot::Simulator do
       simulator.instance_variable_set( :@robot_orientation, orientation )
     end
     
+    context 'when its orientation is -90' do
+      let(:orientation) { -90 }
+      it { should == :south }
+    end
+    
     context 'when its orientation is 0' do
       let(:orientation) { 0 }
       it { should == :east }

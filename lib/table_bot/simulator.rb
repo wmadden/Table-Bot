@@ -38,17 +38,24 @@ module TableBot
       place( current_location, robot_orientation )
     end
     
-    def robot_orientation
-      case @robot_orientation % 360
-      when 0
-        :east
-      when 90
-        :north
-      when 180
-        :west
-      when 270
-        :south
+    def turn( direction )
+      case direction
+      when :left
+        @robot_orientation -= 90
+      when :right
+        @robot_orientation += 90
       end
+    end
+    
+    ORIENTATION_MAP = {
+      :east => 0,
+      :north => 90,
+      :west => 180,
+      :south => 270
+    }
+    
+    def robot_orientation
+      @robot_orientation = ORIENTATION_MAP.key( @robot_orientation % 360 )
     end
     
     def robot_orientation=( new_orientation )
