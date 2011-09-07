@@ -10,6 +10,10 @@ module TableBot
       @robot_orientation = 0
     end
     
+    def robot_placed?
+      not @robot_location.nil?
+    end
+    
     def place( location, orientation )
       if location[1] > @height ||
          location[1] < 0 ||

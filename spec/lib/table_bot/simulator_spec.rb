@@ -8,6 +8,25 @@ describe TableBot::Simulator do
   
   let(:simulator) { TableBot::Simulator.new }
   
+  describe '#robot_placed?' do
+    
+    subject { simulator.robot_placed? }
+    
+    before do
+      simulator.instance_variable_set( :@robot_location, robot_location )
+    end
+    
+    context 'when the robot location is known' do
+      let(:robot_location) { [0,0] }
+      it { should == true }
+    end
+    
+    context 'when the robot location is unknown' do
+      let(:robot_location) { nil }
+      it { should == false }
+    end
+  end
+  
   describe '#place' do
     let(:orientation) { :east }
     
